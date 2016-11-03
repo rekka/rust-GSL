@@ -116,7 +116,7 @@ pub mod polynomials {
 /// Note that this function grows combinatorially with l and can overflow for l larger than about 150.
 /// There is no trouble for small m, but overflow occurs when m and l are both large.
 /// Rather than allow overflows, these functions refuse to calculate P_l^m(x) and return [`OvrFlw`](enums/type.Value.html) when they can sense that l and m are too big.
-/// 
+///
 /// If you want to calculate a spherical harmonic, then do not use these functions. Instead use [`legendre_sphPlm`](fn.legendre_sphPlm.html) below, which uses a similar recursion, but with the normalized functions.
 pub mod associated_polynomials {
     use ffi;
@@ -136,16 +136,16 @@ pub mod associated_polynomials {
         (ret, ::types::Result{val: result.val, err: result.err})
     }
 
-    /// This function computes arrays of Legendre polynomials P_l^m(x) and derivatives dP_l^m(x)/dx, for m >= 0, l = |m|, ..., lmax, |x| <= 1.
-    pub fn legendre_Plm_array(m: i32, x: f64, result_array: &mut [f64]) -> enums::Value {
-        unsafe { ffi::gsl_sf_legendre_Plm_array(result_array.len() as i32, m, x, result_array.as_mut_ptr()) }
-    }
+    // /// This function computes arrays of Legendre polynomials P_l^m(x) and derivatives dP_l^m(x)/dx, for m >= 0, l = |m|, ..., lmax, |x| <= 1.
+    // pub fn legendre_Plm_array(m: i32, x: f64, result_array: &mut [f64]) -> enums::Value {
+    //     unsafe { ffi::gsl_sf_legendre_Plm_array(result_array.len() as i32, m, x, result_array.as_mut_ptr()) }
+    // }
 
-    /// This function computes arrays of Legendre polynomials P_l^m(x) and derivatives dP_l^m(x)/dx, for m >= 0, l = |m|, ..., lmax, |x| <= 1.
-    pub fn legendre_Plm_deriv_array(m: i32, x: f64, result_array: &mut [f64], result_deriv_array: &mut [f64]) -> enums::Value {
-        unsafe { ffi::gsl_sf_legendre_Plm_deriv_array(result_array.len() as i32, m, x, result_array.as_mut_ptr(),
-            result_deriv_array.as_mut_ptr()) }
-    }
+    // /// This function computes arrays of Legendre polynomials P_l^m(x) and derivatives dP_l^m(x)/dx, for m >= 0, l = |m|, ..., lmax, |x| <= 1.
+    // pub fn legendre_Plm_deriv_array(m: i32, x: f64, result_array: &mut [f64], result_deriv_array: &mut [f64]) -> enums::Value {
+    //     unsafe { ffi::gsl_sf_legendre_Plm_deriv_array(result_array.len() as i32, m, x, result_array.as_mut_ptr(),
+    //         result_deriv_array.as_mut_ptr()) }
+    // }
 
     /// This routine computes the normalized associated Legendre polynomial \sqrt{(2l+1)/(4\pi)} \sqrt{(l-m)!/(l+m)!} P_l^m(x) suitable for use in spherical harmonics.
     /// The parameters must satisfy m >= 0, l >= m, |x| <= 1.
@@ -164,21 +164,21 @@ pub mod associated_polynomials {
         (ret, ::types::Result{val: result.val, err: result.err})
     }
 
-    /// This function computes arrays of normalized associated Legendre functions \sqrt{(2l+1)/(4\pi)} \sqrt{(l-m)!/(l+m)!} P_l^m(x), and derivatives, for m >= 0, l = |m|, ..., lmax, |x| <= 1.0
-    pub fn legendre_sphPlm_array(m: i32, x: f64, result_array: &mut [f64]) -> enums::Value {
-        unsafe { ffi::gsl_sf_legendre_sphPlm_array(result_array.len() as i32, m, x, result_array.as_mut_ptr()) }
-    }
+    // /// This function computes arrays of normalized associated Legendre functions \sqrt{(2l+1)/(4\pi)} \sqrt{(l-m)!/(l+m)!} P_l^m(x), and derivatives, for m >= 0, l = |m|, ..., lmax, |x| <= 1.0
+    // pub fn legendre_sphPlm_array(m: i32, x: f64, result_array: &mut [f64]) -> enums::Value {
+    //     unsafe { ffi::gsl_sf_legendre_sphPlm_array(result_array.len() as i32, m, x, result_array.as_mut_ptr()) }
+    // }
 
-    /// This function computes arrays of normalized associated Legendre functions \sqrt{(2l+1)/(4\pi)} \sqrt{(l-m)!/(l+m)!} P_l^m(x), and derivatives, for m >= 0, l = |m|, ..., lmax, |x| <= 1.0
-    pub fn legendre_sphPlm_deriv_array(m: i32, x: f64, result_array: &mut [f64], result_deriv_array: &mut [f64]) -> enums::Value {
-        unsafe { ffi::gsl_sf_legendre_sphPlm_deriv_array(result_array.len() as i32, m, x, result_array.as_mut_ptr(),
-            result_deriv_array.as_mut_ptr()) }
-    }
+    // /// This function computes arrays of normalized associated Legendre functions \sqrt{(2l+1)/(4\pi)} \sqrt{(l-m)!/(l+m)!} P_l^m(x), and derivatives, for m >= 0, l = |m|, ..., lmax, |x| <= 1.0
+    // pub fn legendre_sphPlm_deriv_array(m: i32, x: f64, result_array: &mut [f64], result_deriv_array: &mut [f64]) -> enums::Value {
+    //     unsafe { ffi::gsl_sf_legendre_sphPlm_deriv_array(result_array.len() as i32, m, x, result_array.as_mut_ptr(),
+    //         result_deriv_array.as_mut_ptr()) }
+    // }
 
-    /// This function returns the size of result_array[] needed for the array versions of P_l^m(x), lmax - m + 1.
-    pub fn legendre_array_size(lmax: i32, m: i32) -> enums::Value {
-        unsafe { ffi::gsl_sf_legendre_array_size(lmax, m) }
-    }
+    // /// This function returns the size of result_array[] needed for the array versions of P_l^m(x), lmax - m + 1.
+    // pub fn legendre_array_size(lmax: i32, m: i32) -> enums::Value {
+    //     unsafe { ffi::gsl_sf_legendre_array_size(lmax, m) }
+    // }
 }
 
 /// The Conical Functions P^\mu_{-(1/2)+i\lambda}(x) and Q^\mu_{-(1/2)+i\lambda} are described in Abramowitz & Stegun, Section 8.12.
