@@ -23,3 +23,6 @@ pkg-config = "0.3"
 [lib]
 name = "rgsl"
 crate-type = ["dylib", "rlib"]
+
+[features]
+v2 = []
